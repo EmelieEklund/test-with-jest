@@ -1,4 +1,6 @@
 /dist/
+geckodriver
+geckodriver.exe
 
 # Logs
 logs
