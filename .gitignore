@@ -1,6 +1,7 @@
 /dist/
 geckodriver
 geckodriver.exe
+run-firefox.js
 
 # Logs
 logs
