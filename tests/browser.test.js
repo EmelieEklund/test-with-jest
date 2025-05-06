@@ -4,12 +4,14 @@ require('geckodriver');
 const fileUnderTest = 'file://' + __dirname.replace(/ /g, '%20') + '/../dist/index.html';
 const defaultTimeout = 10000;
 let driver;
-jest.setTimeout(1000 * 60 * 5); // 5 minuter
+//jest.setTimeout(1000 * 60 * 5); // 5 minuter
 
 // Det här körs innan vi kör testerna för att säkerställa att Firefox är igång
 beforeAll(async () => {
 console.log(fileUnderTest);
+    console.log("🔧 Bygger Firefox-drivrutin");
     driver = await new Builder().forBrowser('firefox').build();
+    console.log("🔧 Navigerar till index.html");
     await driver.get(fileUnderTest);
 });
 
