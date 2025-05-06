@@ -37,16 +37,25 @@ describe('Clicking "Pusha till stacken"', () => {
 
 // Nytt test
 describe('Clicking "Poppa stacken!"', () => {
-    it('should return the value on the top of the stack', async () => {       
+    it('should remove value on top of the stack and the new top of stack should be the element underneath on the stack', async () => {       
         let push = await driver.findElement(By.id('push'));
         await push.click();
-        let alert = await driver.switchTo().alert();
-        await alert.sendKeys("Krokofanter");
-        await alert.accept();
+
+        let alertPush = await driver.switchTo().alert();
+        await alertPush.sendKeys("Krokofanter");
+        await alertPush.accept();
+
+        await push.click();
+        alertPush = await driver.switchTo().alert();
+        await alertPush.sendKeys("Djungelvrål");
+        await alertPush.accept();
 
         let pop = await driver.findElement(By.id('pop'));
         await pop.click();
+        let alertPop = await driver.switchTo().alert();
+        await alertPop.accept();
+
         let stack = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(stack).toEqual("Elefant");  //Medvetet fel
+        expect(stack).toEqual("Djungelvrål");  // Medvetet felaktigt
     });
 });
