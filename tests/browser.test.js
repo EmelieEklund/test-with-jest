@@ -61,6 +61,6 @@ describe('Clicking "Poppa stacken!"', () => {
         await peek.click();
 
         let stack = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(stack).toEqual("Djungelvrål");  //Medvetet felaktigt 
+        expect(stack).toEqual("Krokofanter");  
     });
 });
