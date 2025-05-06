@@ -2,10 +2,12 @@ const { Builder, By, until } = require('selenium-webdriver');
 require('geckodriver');
 
 const fileUnderTest = 'file://' + __dirname.replace(/ /g, '%20') + '/../dist/index.html';
+console.log(fileUnderTest);
+
 const defaultTimeout = 10000;
 let driver;
-jest.setTimeout(1000 * 60 * 5); // 5 minuter
 
+console.log(fileUnderTest);
 // Det här körs innan vi kör testerna för att säkerställa att Firefox är igång
 beforeAll(async () => {
 console.log(fileUnderTest);
@@ -37,7 +39,7 @@ describe('Clicking "Pusha till stacken"', () => {
 
 // Nytt test
 describe('Clicking "Poppa stacken!"', () => {
-    it('should remove value on top of the stack and the new top of stack should be the element underneath on the stack', async () => {       
+    it('should remove the value on top of the stack and the new top of stack should be the element underneath', async () => {       
         let push = await driver.findElement(By.id('push'));
         await push.click();
 
@@ -55,7 +57,10 @@ describe('Clicking "Poppa stacken!"', () => {
         let alertPop = await driver.switchTo().alert();
         await alertPop.accept();
 
+        let peek = await driver.findElement(By.id('peek'));
+        await peek.click();
+
         let stack = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(stack).toEqual("Djungelvrål");  // Medvetet felaktigt
+        expect(stack).toEqual("Djungelvrål");  //Medvetet felaktigt 
     });
 });
