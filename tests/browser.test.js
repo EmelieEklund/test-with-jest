@@ -36,12 +36,17 @@ describe('Clicking "Pusha till stacken"', () => {
 });
 
 // Nytt test
-describe('', () => {
-    it('should ...', async () => {
+describe('Clicking "Poppa stacken!"', () => {
+    it('should return the value on the top of the stack', async () => {       
         let push = await driver.findElement(By.id('push'));
         await push.click();
         let alert = await driver.switchTo().alert();
-        await alert.sendKeys("Bananer");
+        await alert.sendKeys("Krokofanter");
         await alert.accept();
+
+        let pop = await driver.findElement(By.id('pop'));
+        await pop.click();
+        let stack = await driver.findElement(By.id('top_of_stack')).getText();
+        expect(stack).toEqual("Elefant");  //Medvetet fel
     });
 });

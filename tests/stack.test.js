@@ -22,5 +22,5 @@ test('peek on stack with two or more elements returns the top element', () => {
 test('pushing "" on stack returns "" when peek on stack', () => {
     stack.push("");
     expect(stack.peek()).toBeDefined();
-    expect(stack.peek()).toBe("");
+    expect(stack.peek()).toBe("Hej");  //Medvetet fel
 });
